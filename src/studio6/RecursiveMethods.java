@@ -14,10 +14,18 @@ public class RecursiveMethods {
 	public static double geometricSum(int n) {
 		
 			// FIXME compute the geometric sum for the first n terms recursively
-			return 0;
+			if (n == 0) {
+				return 0;
+			} else {
+				double sum = Math.pow(0.5,  n) + geometricSum(n-1);
+				return sum;
+			}
 		
 	}
 
+	public static void main(String[] args) {
+		geometricSum(4);
+	}
 	/**
 	 * This method uses recursion to compute the greatest common divisor
 	 * for the two input values
@@ -28,8 +36,11 @@ public class RecursiveMethods {
 	 */
 	public static int gcd(int p, int q) {
 		
-			// FIXME compute the gcd of p and q using recursion
-			return 0;
+			if (p % q == 0) {
+				return q;
+			} else {
+				return gcd(q, p % q);
+			}
 		
 	}
 
@@ -44,10 +55,35 @@ public class RecursiveMethods {
 	public static int[] toReversed(int[] array) {
 		
 			// FIXME create a helper method that can recursively reverse the given array
-			return new int[0];
-		
+		int index = 0;
+		int[] reversedArray = new int[array.length];
+		if (array.length == 0)
+		{
+			return reversedArray;
+		}
+		else
+		{
+			return helper(array, index, reversedArray);
+		}
 	}
 
+	public static int[] helper(int[] array, int index, int[] reversedArray) {
+		if (index >= array.length / 2) {
+			return reversedArray;
+		} else {
+			reversedArray[index] = array[array.length - index - 1];
+			reversedArray[array.length - index - 1] = array[index];
+		}
+		return helper(array, index + 1, reversedArray);
+	}
+//	public static int[] helper(int[] array, int index, int[] reversedArray) {
+//		if (index == array.length - 1) {
+//			return reversedArray;
+//		} else {
+//			reversedArray[index] = array[array.length - index - 1];
+//		}
+//	return helper(array, index + 1, reversedArray);
+//	}
 	/**
 	 * @param xCenter                       x-coordinate of the center of the circle
 	 *                                      at the current depth
